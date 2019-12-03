@@ -1,27 +1,25 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const keys = require("./config/keys");
-// const cookieSession = require("cookie-session");
+const cookieSession = require("cookie-session");
 const passport = require("passport");
 
 require("./models/User");
 require("./services/passport");
 
-mongoose.connect(keys.mongoURI, { useNewUrlParser: true }).catch(e => {
-  console.log("error: ", e);
-});
+mongoose.connect(keys.mongoURI);
 
 const app = express();
 
-// app.use(
-//   cookieSession({
-//     maxAge: 60 * 60 * 1000, //jak długo ma istnieć ciasteczko (przez godzine)
-//     keys: [keys.cookieKey]
-//   })
-// );
+app.use(
+  cookieSession({
+    maxAge: 60 * 60 * 1000, //jak długo ma istnieć ciasteczko (przez godzine)a
+    keys: [keys.cookieKey]
+  })
+);
 
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 
 require("./routes/authRoutes")(app);
 

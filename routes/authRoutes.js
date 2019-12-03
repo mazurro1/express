@@ -5,7 +5,7 @@ module.exports = app => {
     "/auth/google",
     passport.authenticate("google", {
       // nasłuchiwanie gdy wejdziemy na sciezeke i wywołuje specjalną funkcję do tego. Jeżeli wpiszemy 'google' to passport wie ze ma się odwołać do GoogleStrategy
-      scope: ["profile", "email"] // prosimy google o udostępnienie profilu uzytkownika
+      scope: ["profile", "email"] // prosimy google o udostępnienie profilu uzytkownikaa
     })
   );
 
